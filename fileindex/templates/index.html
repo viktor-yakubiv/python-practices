@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Index of {{ current }}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <h1>Index of {{ current }}</h1>
+    <table class="table table-hover">
+        <colgroup>
+            <col style="width: 3rem;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% if not root %}
+            <tr>
+                <td>
+                    <span class="file-icon fa fa-level-up"></span>
+                    <span class="file-type sr-only">Parent directory</span>
+                </td>
+                <td>
+                    <a class="file-name file-name-parent" href="../" title="Go to parent directory">Level up</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% for file in files %}
+            <tr>
+                <td>
+                    {% if file.isdir %}
+                        <span class="file-icon fa fa-folder"></span>
+                        <span class="file-type sr-only">Directory</span>
+                    {% elif file.isfile %}
+                        <span class="file-icon fa fa-file"></span>
+                        <span class="file-type sr-only">File</span>
+                    {% elif file.islink %}
+                        <span class="file-icon fa fa-link"></span>
+                        <span class="file-type sr-only">Link</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="file-name" href="{{ file.url }}" {% if file.isfile %}download{% endif %}>
+                        {{ file.name }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
