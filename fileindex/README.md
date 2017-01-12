@@ -7,7 +7,7 @@ and displays table of links at the front-end.
 
 Original task below
 
-## 
+## Задача 5
 
 Используя Django, написать клиент-серверное приложение. 
 Сервер запускается на удаленном компьютере, 
