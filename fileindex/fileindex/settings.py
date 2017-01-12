@@ -120,3 +120,32 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 INDEX = 'D:/' # '#os.path.join(BASE_DIR, '')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/debug.log',
+        },
+        'error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/error.log'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['debug', 'error'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'fileindex': {
+            'handlers': ['debug', 'error'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
